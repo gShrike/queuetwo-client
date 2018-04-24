@@ -17,13 +17,22 @@ class App extends Component {
       });
   }
   onQuestionSubmit = question => {
-    this.setState({
-      items: this.state.items.concat(question)
-    });
+    return fetch('//localhost:3030/questions', {
+      body: JSON.stringify(question),
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST'
+    })
+      .then(response => response.json())
+      .then(item => {
+        this.setState({ items: this.state.items.concat(item) });
+      });
   };
 
   render() {
     const { items } = this.state;
+    console.log(items);
     return (
       <main>
         <Header />

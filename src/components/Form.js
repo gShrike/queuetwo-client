@@ -8,12 +8,12 @@ class Form extends Component {
       question: formdata.get('question')
     };
     this.props.onSubmit(question);
-    this.refs.value = '';
+    this.refs.form.reset();
   };
   render() {
     return (
       <form ref="form" onSubmit={this.onSubmit}>
-        <label for="question">Question</label>
+        <label htmlFor="question">Question</label>
         <input name="question" type="text" />
         <button type="submit">Submit!</button>
       </form>
